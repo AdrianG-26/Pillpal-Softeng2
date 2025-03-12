@@ -1,23 +1,29 @@
 import React from "react";
 import { StatusBar } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { NavigationContainer } from '@react-navigation/native';
 import { CalendarProvider } from './context/CalendarContext';
-import Taskbar from "./components/Taskbar";
+import { MedicineProvider } from "./context/MedicineContext";
+import { styleMain } from "./style-components/GlobalStyles";
+import Taskbar from "./navigation/Taskbar";
 
 export default function App() {
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
+      <SafeAreaView style={styleMain.SafeAreaContainer} edges={["top", "left", "right"]}>
         <CalendarProvider>
-          <StatusBar
-            barStyle="light-content"
-            backgroundColor="#177581"
-            translucent={false}
-          />
-          <Taskbar />
-        </CalendarProvider> 
-      </NavigationContainer>
+          <MedicineProvider>
+            <NavigationContainer>
+              <StatusBar
+                barStyle="dark-content"
+                backgroundColor="rgb(68, 171, 181)"
+                translucent={true}
+              />
+              <Taskbar />
+            </NavigationContainer>
+          </MedicineProvider>
+        </CalendarProvider>
+      </SafeAreaView>
     </SafeAreaProvider>
   );
 }

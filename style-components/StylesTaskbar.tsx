@@ -10,10 +10,6 @@ export const stylesTBar = StyleSheet.create({
   },
 
   taskbarContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
     height: 75,
     flexDirection: 'row',
     justifyContent: 'space-around',

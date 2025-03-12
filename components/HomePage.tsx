@@ -18,7 +18,7 @@ const HomeScreen = () => {
           <Feather name="user" style={stylesHMP.userIcon} />
           <View style={stylesHMP.textContainer}>
             <Text style={stylesHMP.welcomeText}>Hi User!</Text>
-            <Text style={stylesHMP.welcomeText}>How do you feel today?</Text>
+            <Text style={stylesHMP.welcomeText}>Hows do you feel today?</Text>
           </View>
         </View>
         <View style={stylesHMP.iconContainer}>
