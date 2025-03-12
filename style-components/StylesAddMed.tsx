@@ -5,7 +5,6 @@ const stylesAddMed = StyleSheet.create({
     flex: 1,
     backgroundColor: "rgb(245, 247, 255)", // Light pastel background for a cleaner look
     alignItems: "center",
-    paddingBottom: 20, // Added padding to the bottom for spacing
   },
 
   /* Header */
@@ -17,7 +16,7 @@ const stylesAddMed = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: 25,
-    paddingTop: 20, // Increased padding to give more space at the top
+
 
     // Shadow for depth
     shadowColor: "#000",
@@ -31,6 +30,7 @@ const stylesAddMed = StyleSheet.create({
   userContainer: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: 'center',
   },
 
   userIconContainer: {
@@ -128,7 +128,7 @@ const stylesAddMed = StyleSheet.create({
 
   /* Inactive Medicines */
   inactiveMedContainer: {
-    backgroundColor: "#F5F5F5", // Light gray background for inactive items
+    backgroundColor: "transparent", // Light gray background for inactive items
     borderRadius: 12,
     padding: 12,
   },
