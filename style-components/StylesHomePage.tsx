@@ -134,7 +134,7 @@ export const stylesHMP = StyleSheet.create({
   },
   
   selectedDayText: {
-    color: 'rgb(23 117 129)',
+    color: 'rgb(23, 117, 129)',
   },
   
   dayNumber: {

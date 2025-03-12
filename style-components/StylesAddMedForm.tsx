@@ -3,20 +3,20 @@ import { StyleSheet } from "react-native";
 const stylesAddMedForm = StyleSheet.create({
     addMedicineContainer: {
         flex: 1,
-        backgroundColor: "#F8F9FA",
-        paddingHorizontal: 20,
-        paddingTop: 50,
+        backgroundColor: "rgb(244, 254, 255)"
     },
 
     headerAreaContainer: {
         flexDirection: "row",
         alignItems: "center",
         marginBottom: 20,
+        height: 80,
+        justifyContent: 'flex-start',
     },
 
     backIcon: {
         fontSize: 24,
-        color: "#007BFF",
+        color: "rgb(23, 117, 129)",
         padding: 10,
     },
 
@@ -28,7 +28,6 @@ const stylesAddMedForm = StyleSheet.create({
     },
 
     formContainer: {
-        backgroundColor: "#fff",
         padding: 20,
         borderRadius: 12,
         shadowColor: "#000",
@@ -59,7 +58,7 @@ const stylesAddMedForm = StyleSheet.create({
     },
 
     timeText: {
-
+        fontSize: 16,
     },
 
     dosageContainer: {
@@ -108,7 +107,7 @@ const stylesAddMedForm = StyleSheet.create({
     },
 
     addButton: {
-        backgroundColor: "#007BFF",
+        backgroundColor: "rgb(23, 117, 129)",
         paddingVertical: 15,
         borderRadius: 8,
         alignItems: "center",
