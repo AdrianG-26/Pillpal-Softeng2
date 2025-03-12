@@ -1,31 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import { stylesHMP } from '../style-components/StylesHomePage';
+import { useCalendar } from '../context/CalendarContext';
 
 const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 const HomeScreen = () => {
+  const { date, selectedDay, handleNextDay, handlePrevDay, handleDayClick, formatSelectedDate } = useCalendar();
   const today = new Date();
-  const [date, setDate] = useState<Date>(today);
-  const [selectedDay, setSelectedDay] = useState<Date>(today);
-
-  const handleNextDay = () => {
-    setDate((prevDate) => new Date(prevDate.getTime() + 5 * 86400000));
-  };
-
-  const handlePrevDay = () => {
-    setDate((prevDate) => new Date(prevDate.getTime() - 5 * 86400000)); 
-  };
-
-  const handleDayClick = (day: Date) => {
-    setSelectedDay(day); 
-  };
-
-  const formatSelectedDate = (date: Date) => {
-    const options: Intl.DateTimeFormatOptions = { month: 'long', day: 'numeric' };
-    return new Intl.DateTimeFormat('en-US', options).format(date);
-  };
 
   return (
     <View style={stylesHMP.mainContainer}>
@@ -46,71 +29,83 @@ const HomeScreen = () => {
 
       {/* CALENDAR SECTION */}
       <View style={stylesHMP.calendarSection}>
-        <View style={stylesHMP.calendarHeader}>
-          <Text style={stylesHMP.monthText}>
-            {date.toLocaleString('default', { month: 'long' })} {date.getFullYear()}
-          </Text>
-        </View>
+        <View style={stylesHMP.calendarArea}>
+        <TouchableOpacity onPress={handlePrevDay}>
+          <Feather name="chevron-left" style={stylesHMP.arrowIcon} />
+        </TouchableOpacity>
 
-        <View style={stylesHMP.calendarContainer}>
-          <TouchableOpacity onPress={handlePrevDay}>
-            <Feather name="chevron-left" style={stylesHMP.arrowIcon} />
-          </TouchableOpacity>
+          <View style={stylesHMP.calendarContainer}>
+            <View style={stylesHMP.calendarHeader}>
+              <Text style={stylesHMP.monthText}>
+                {date.toLocaleString('default', { month: 'long' })} {date.getFullYear()}
+              </Text>
+            </View>
 
-          <View style={stylesHMP.dayContainer}>
-            {Array.from({ length: 5 }).map((_, index) => {
-              const dayDate = new Date(date);
-              dayDate.setDate(date.getDate() - 2 + index); // Center selected day
+            <View style={stylesHMP.dayContainer}>
+              {Array.from({ length: 5 }).map((_, index) => {
+                const dayDate = new Date(date);
+                dayDate.setDate(date.getDate() - 2 + index);
 
-              const isCurrentDay = dayDate.toDateString() === today.toDateString();
-              const isSelectedDay = selectedDay?.toDateString() === dayDate.toDateString();
+                const isCurrentDay = dayDate.toDateString() === today.toDateString();
+                const isSelectedDay = selectedDay?.toDateString() === dayDate.toDateString();
 
-              return (
-                <TouchableOpacity key={index} onPress={() => handleDayClick(dayDate)}>
-                  <View
-                    style={[
-                      stylesHMP.dayBox,
-                      isCurrentDay && stylesHMP.currentDayBox, 
-                      isSelectedDay && stylesHMP.selectedDayBox,
-                    ]}
-                  >
-                    <Text
-                      style={[
-                        stylesHMP.dayNumber,
-                        isSelectedDay && stylesHMP.selectedDayText,
-                      ]}
-                    >
-                      {dayDate.getDate()}
-                    </Text>
-                    <Text
-                      style={[
-                        stylesHMP.dayLabel,
-                        (isCurrentDay || isSelectedDay) && stylesHMP.selectedDayText,
-                      ]}
-                    >
-                      {daysOfWeek[dayDate.getDay()]}
-                    </Text>
-                  </View>
-                </TouchableOpacity>
-              );
-            })}
+                return (
+                  <TouchableOpacity key={index} onPress={() => handleDayClick(dayDate)}>
+                    <View style={stylesHMP.dayBoxWrapper}>
+                      {/* Keep space for "Today" label so all boxes align */}
+                      <View style={stylesHMP.dayBoxContainer}>
+                        {isCurrentDay && <Text style={stylesHMP.todayLabel}>Today</Text>}
+
+                        <View
+                          style={[
+                            stylesHMP.dayBox,
+                            isCurrentDay && stylesHMP.currentDayBox,
+                            isSelectedDay && stylesHMP.selectedDayBox,
+                          ]}
+                        >
+                          <Text
+                            style={[
+                              stylesHMP.dayNumber,
+                              isSelectedDay && stylesHMP.selectedDayText,
+                            ]}
+                          >
+                            {dayDate.getDate()}
+                          </Text>
+
+                          <Text
+                            style={[
+                              stylesHMP.dayLabel,
+                              isCurrentDay && stylesHMP.currentDayText,
+                              isSelectedDay && stylesHMP.selectedDayText,
+                            ]}
+                          >
+                            {daysOfWeek[dayDate.getDay()]}
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                  </TouchableOpacity>
+
+                );
+              })}
+            </View>
           </View>
 
-          <TouchableOpacity onPress={handleNextDay}>
+        <TouchableOpacity onPress={handleNextDay}>
             <Feather name="chevron-right" style={stylesHMP.arrowIcon} />
-          </TouchableOpacity>
+        </TouchableOpacity>
         </View>
       </View>
+
 
       {/* CONTENTS SECTION */}
       <View style={stylesHMP.contentSection}>
         <View style={stylesHMP.selectedDateContainer}>
-          <Text style={stylesHMP.selectedDateText}>
-            {formatSelectedDate(selectedDay)} 
-          </Text>
+          <Text style={stylesHMP.selectedDateText}>{formatSelectedDate(selectedDay)}</Text>
           <View style={stylesHMP.horizontalLine}/>
         </View>
-            {/* MEDICINE SECTION */}
+
+        {/* MEDICINE SECTION */}
         <View style={stylesHMP.medicineIntakeContainer}>
           <Text style={stylesHMP.medicineText}>Your Medicine Intake is in:</Text>
           <View style={stylesHMP.medicineBox}>
@@ -125,10 +120,6 @@ const HomeScreen = () => {
               <Text style={stylesHMP.timeText}>3:30 PM</Text>
             </View>
           </View>
-        </View>
-            {/* SYMPTOM REPORT SECTION */}
-        <View>
-            
         </View>
       </View>
     </View>

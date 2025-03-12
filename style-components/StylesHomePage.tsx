@@ -10,9 +10,9 @@ export const stylesHMP = StyleSheet.create({
 
   // TOP SECTION
   topSection: {
-    backgroundColor: '#F8FAFC',
+    backgroundColor: 'rgb(244, 254, 255)',
     width: '100%',
-    height: 100,
+    height: 80,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -61,20 +61,24 @@ export const stylesHMP = StyleSheet.create({
   calendarSection: {
     backgroundColor: '#177581',
     width: '100%',
-    height: 200,
+    height: 150,
     justifyContent: 'center',
+    alignSelf: 'center',
+  },
+  
+  calendarArea: {
+    flexDirection: 'row',
+    width: '100%',
     alignItems: 'center',
-    paddingHorizontal: 15,
+    gap: 5,
+    justifyContent: 'center',
+    paddingHorizontal: 60,
   },
 
-  // Calendar Header
   calendarHeader: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    textAlign: 'center',
     width: '100%',
-    marginTop: -30,
-    marginRight: 100,
   },
 
   monthText: {
@@ -83,11 +87,11 @@ export const stylesHMP = StyleSheet.create({
     color: 'white',
   },
 
-  // Calendar Container
   calendarContainer: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
-    marginTop: 10,
+    gap: 5,
+    marginTop: 0,
   },
 
   arrowIcon: {
@@ -103,54 +107,70 @@ export const stylesHMP = StyleSheet.create({
     gap: 10,
   },
 
-  // Single Day Box
   dayBox: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 8,
-    paddingHorizontal: 12,
     borderRadius: 20,
     borderWidth: 1,
     borderColor: 'rgb(244, 254, 255)',
-    // backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    minWidth: 50,
+    minWidth: 60,
     height: 70,
+    color: 'white',
   },
 
   activeDayBox: {
-    backgroundColor: 'rgb(244, 254, 255)',
+    backgroundColor: 'rgb(147, 169, 171)',
   },
   
   currentDayBox: {
-    backgroundColor: 'rgb(101, 214, 242)', // Or any color of your choice
-    color: 'rgb(23 117 129)',
+    borderWidth: 3,
+  },
+
+  currentDayText: {
+    color: 'white',
   },
   
   selectedDayBox: {
-    backgroundColor: 'rgb(244, 254, 255)', // Lighter background for selected day
+    backgroundColor: 'rgb(244, 254, 255)',
   },
   
   selectedDayText: {
-    color: 'rgb(23 117 129)',// Text color for the selected day
+    color: 'rgb(23 117 129)',
   },
   
-
-  // Day Number (e.g., "17")
   dayNumber: {
     fontSize: 20,
     fontWeight: 'bold',
     color: 'white',
   },
 
-  // Day Label (e.g., "Mon")
   dayLabel: {
     fontSize: 14,
-    color: 'white',
+    color: 'rgb(252, 255, 250)',
   },
 
   activeDayText: {
     color: 'black',
   },
+
+  dayBoxWrapper: {
+    alignItems: 'center', // Ensures all items are centered
+  },
+  
+  dayBoxContainer: {
+    alignItems: 'center', // Keeps the day box and label centered
+    justifyContent: 'flex-end', // Aligns all items at the bottom
+    height: 70, // Ensure equal height across all items
+  },
+  
+  todayLabel: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: 'rgb(235, 235, 235)', // Adjust color as needed
+    marginBottom: 5, // Adds spacing but keeps alignment
+  },
+  
+  
 
   // CONTENTS SECTION
   contentSection: {
@@ -163,7 +183,7 @@ export const stylesHMP = StyleSheet.create({
 
   todaysDate: {
     fontSize: 14,
-    color: 'rgb(23 117 129)',
+    color: 'rgb(23, 117, 129)',
   },  
 
   selectedDateContainer: {
