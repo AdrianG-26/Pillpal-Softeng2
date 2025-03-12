@@ -1,12 +1,12 @@
-import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { stylesTBar } from '../style-components/StylesTaskbar'; // Updated import
-import HomeScreen from '../components/HomePage';
-import AddMedicine from './AddMedicine';
-import WaterTracker from './WaterTracker';
-import SymptomReport from './SymptomReport';
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import React from "react";
+import HomeScreen from "../components/HomePage";
+import { stylesTBar } from "../style-components/StylesTaskbar";
+import AddMedicine from "./AddMedicine";
+import SymptomReport from "./SymptomReport";
+import WaterTracker from "./WaterTracker";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,17 +16,16 @@ const Taskbar = () => {
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ color, size, focused }) => {
-            let iconName: keyof typeof MaterialCommunityIcons.glyphMap = 'home'; // Explicitly type iconName
+            let iconName: keyof typeof MaterialCommunityIcons.glyphMap = "home";
 
-            // Assign iconName based on route name
-            if (route.name === 'Home') {
-              iconName = 'home';
-            } else if (route.name === 'Pill') {
-              iconName = 'pill';
-            } else if (route.name === 'Report') {
-              iconName = 'file-document';
-            } else if (route.name === 'Water') {
-              iconName = 'water';
+            if (route.name === "Home") {
+              iconName = "home";
+            } else if (route.name === "Pill") {
+              iconName = "pill";
+            } else if (route.name === "Report") {
+              iconName = "file-document";
+            } else if (route.name === "Water") {
+              iconName = "water";
             }
 
             return (
@@ -34,15 +33,14 @@ const Taskbar = () => {
                 name={iconName}
                 size={size}
                 color={color}
-                style={focused ? stylesTBar.iconActive : null} // Apply iconActive style when the tab is active
+                style={focused ? stylesTBar.iconActive : null}
               />
             );
           },
-          tabBarActiveTintColor: 'rgb(100,2,2)', // Active tab color
-          tabBarInactiveTintColor: 'white', // Inactive tab color
-          tabBarStyle: stylesTBar.taskbarContainer, // Apply the taskbarContainer style
-          tabBarLabel: () => null, // Remove tab label
-          headerShown: false, // Remove header from tab screen
+          tabBarInactiveTintColor: "white",
+          tabBarStyle: stylesTBar.taskbarContainer,
+          tabBarLabel: () => null,
+          headerShown: false,
         })}
       >
         <Tab.Screen name="Home" component={HomeScreen} />

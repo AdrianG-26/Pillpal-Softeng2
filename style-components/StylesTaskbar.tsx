@@ -6,7 +6,7 @@ export const stylesTBar = StyleSheet.create({
   },
 
   contentContainer: {
-    flex: 1, // Takes up all available space above the taskbar
+    flex: 1,
   },
 
   taskbarContainer: {
@@ -14,11 +14,16 @@ export const stylesTBar = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: 85,
+    height: 75,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: 'rgb(23, 117, 129)', // Background color for the tab bar
+    backgroundColor: '#177581',
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: -4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5, 
   },
 
   iconContainer: {
@@ -26,15 +31,14 @@ export const stylesTBar = StyleSheet.create({
   },
 
   iconActive: {
-    color: 'rgb(23, 117, 129)', // Active icon color
-    backgroundColor: 'rgb(244, 254, 255)', // No background for the icon itself
-    borderWidth: 2, // Border width around the icon
-    borderColor: 'rgb(244, 254, 255)', // Pink border
-
-    borderRadius: 10, // Rounded corners for the rectangle
+    color: '#177581',
+    backgroundColor: '#FBFBFB', 
+    borderWidth: 2, 
+    borderColor: '#FBFBFB', 
+    borderRadius: 10, 
   },
 
   icon: {
-    padding: 5, // Padding for the icon itself
+    padding: 5,
   },
 });

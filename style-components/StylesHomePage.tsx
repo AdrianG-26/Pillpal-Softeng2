@@ -10,9 +10,9 @@ export const stylesHMP = StyleSheet.create({
 
   // TOP SECTION
   topSection: {
-    backgroundColor: 'rgb(244, 254, 255)',
+    backgroundColor: '#F8FAFC',
     width: '100%',
-    height: 80,
+    height: 100,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
