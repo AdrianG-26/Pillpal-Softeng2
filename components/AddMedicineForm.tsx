@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Modal, Pressable } from "react-native";
+import { View, Text, TextInput, Modal, Pressable, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -20,20 +20,24 @@ const AddMedicineForm = () => {
   const [mode, setMode] = useState("");
   const [quantity, setQuantity] = useState("");
   const [showTimePicker, setShowTimePicker] = useState(false);
-  const [open, setOpen] = useState(false); // Add open state
-  // Format selected time
+  const [open, setOpen] = useState(false);
+
+  // Format time for display
   const formattedTime = nextReminder.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 
-  // Function to add medicine
+  // Function to handle saving medicine
   const handleAddMedicine = () => {
-    if (!name || !dosage || !mode || !quantity) return;
+    if (!name || !dosage || !mode || !quantity) {
+      Alert.alert("Error", "Please fill all fields!");
+      return;
+    }
 
     addMedicine({
       name,
       nextReminder: formattedTime,
       dosage: `${dosage} ${dosageUnit}`,
       mode,
-      quantity: parseInt(quantity),
+      quantity: parseInt(quantity, 10),
       isActive: true,
     });
 
@@ -50,44 +54,30 @@ const AddMedicineForm = () => {
 
       {/* Form */}
       <View style={stylesAddMedForm.formContainer}>
-        {/* Medicine Name Input */}
+        {/* Medicine Name */}
         <TextInput
           style={stylesAddMedForm.input}
           placeholder="Medicine Name"
-          placeholderTextColor="#777"
           value={name}
           onChangeText={setName}
         />
 
-        {/* Time Picker (Click to Show Modal) */}
+        {/* Time Picker */}
         <Pressable onPress={() => setShowTimePicker(true)} style={stylesAddMedForm.input}>
-            <View style={stylesAddMedForm.timeTextContainer}>
-                <Text style={stylesAddMedForm.timeText}>{formattedTime}</Text>
-            </View>
+          <Text style={stylesAddMedForm.timeText}>{formattedTime}</Text>
         </Pressable>
 
-        {/* Time Picker Modal */}
-        <Modal transparent={true} visible={showTimePicker} animationType="fade">
-          <View style={stylesAddMedForm.modalBackground}>
-            <View style={stylesAddMedForm.pickerContainer}>
-              <DateTimePicker
-                value={nextReminder}
-                mode="time"
-                display="spinner"
-                textColor="black"
-                onChange={(event, selectedTime) => {
-                  if (selectedTime) {
-                    setNextReminder(selectedTime);
-                  }
-                  setShowTimePicker(false); // Close modal after selection
-                }}
-              />
-              <Pressable onPress={() => setShowTimePicker(false)}>
-                <Text style={[stylesAddMedForm.buttonText, stylesAddMedForm.confirmText]}>Confirm</Text>
-              </Pressable>
-            </View>
-          </View>
-        </Modal>
+        {showTimePicker && (
+          <DateTimePicker
+            value={nextReminder}
+            mode="time"
+            display="spinner"
+            onChange={(event, selectedTime) => {
+              if (selectedTime) setNextReminder(selectedTime);
+              setShowTimePicker(false);
+            }}
+          />
+        )}
 
         {/* Dosage Input */}
         <View style={stylesAddMedForm.dosageContainer}>
@@ -95,31 +85,28 @@ const AddMedicineForm = () => {
             style={[stylesAddMedForm.input, stylesAddMedForm.dosageInput]}
             placeholder="Dosage"
             keyboardType="numeric"
-            placeholderTextColor="#777"
             value={dosage}
             onChangeText={setDosage}
           />
 
-            <DropDownPicker
-            open={open} // Pass state to open
-            setOpen={setOpen} // Required for DropDownPicker
+          <DropDownPicker
+            open={open}
+            setOpen={setOpen}
             value={dosageUnit}
             items={[
-                { label: "mg", value: "mg" },
-                { label: "g", value: "g" },
-                { label: "mcg", value: "mcg" },
+              { label: "mg", value: "mg" },
+              { label: "g", value: "g" },
+              { label: "mcg", value: "mcg" },
             ]}
             setValue={setDosageUnit}
-            containerStyle={{ flex: 1, height: 50 }}
-            style={stylesAddMedForm.picker}
-            />
+            containerStyle={{ width: 100 }}
+          />
         </View>
 
-        {/* Mode of Intake Input */}
+        {/* Mode of Intake */}
         <TextInput
           style={stylesAddMedForm.input}
           placeholder="Mode of Intake (e.g., Oral)"
-          placeholderTextColor="#777"
           value={mode}
           onChangeText={setMode}
         />
@@ -129,7 +116,6 @@ const AddMedicineForm = () => {
           style={stylesAddMedForm.input}
           placeholder="Quantity"
           keyboardType="numeric"
-          placeholderTextColor="#777"
           value={quantity}
           onChangeText={setQuantity}
         />

@@ -3,13 +3,13 @@ import { StyleSheet } from "react-native";
 const stylesAddMed = StyleSheet.create({
   addMedicineContainer: {
     flex: 1,
-    backgroundColor: "rgb(245, 247, 255)", // Light pastel background for a cleaner look
+    backgroundColor: "rgb(245, 247, 255)", 
     alignItems: "center",
   },
 
   /* Header */
   headerContainer: {
-    backgroundColor: "#E3F2FD", // Light blue header with a soft gradient
+    backgroundColor: "#E3F2FD", 
     height: 90,
     width: "100%",
     flexDirection: "row",
@@ -18,7 +18,7 @@ const stylesAddMed = StyleSheet.create({
     paddingHorizontal: 25,
 
 
-    // Shadow for depth
+    // Shadow 
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
@@ -34,7 +34,7 @@ const stylesAddMed = StyleSheet.create({
   },
 
   userIconContainer: {
-    backgroundColor: "#177581", // Brighter accent for the icon container
+    backgroundColor: "#177581", 
     width: 50,
     height: 50,
     borderRadius: 50,
@@ -99,6 +99,16 @@ const stylesAddMed = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 5,
     elevation: 4,
+    
+  },
+
+  lowStockBackground: {
+    backgroundColor: 'rgb(251,232,111)',
+    color: 'rgb(1,1,1)',
+  },
+
+  lowStockText: {
+    color: 'rgb(1,1,1)',
   },
 
   medicineName: {
