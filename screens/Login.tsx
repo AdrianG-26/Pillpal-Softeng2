@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { TextInput, Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
 const Login = ({ setIsAuthenticated }) => {
@@ -16,29 +17,63 @@ const Login = ({ setIsAuthenticated }) => {
   };
 
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Login</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Login to PillPal</Text>
+
       <TextInput
-        placeholder="Email"
+        label="Email"
         value={email}
         onChangeText={setEmail}
-        style={{ borderWidth: 1, width: 200, marginVertical: 10, padding: 8 }}
+        mode="outlined"
+        style={styles.input}
       />
       <TextInput
-        placeholder="Password"
+        label="Password"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
-        style={{ borderWidth: 1, width: 200, marginVertical: 10, padding: 8 }}
+        mode="outlined"
+        style={styles.input}
       />
-      <TouchableOpacity onPress={handleLogin}>
-        <Text>Login</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
-        <Text>Go to Sign Up</Text>
-      </TouchableOpacity>
+
+      <Button mode="contained" onPress={handleLogin} style={styles.button}>
+        Login
+      </Button>
+
+      <Text style={styles.signupText}>Don't have an account?</Text>
+      <Button mode="text" onPress={() => navigation.navigate("SignUp")}>
+        Sign Up
+      </Button>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#f4f4f4",
+    padding: 20,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: "bold",
+    marginBottom: 20,
+    color: "#177581",
+  },
+  input: {
+    width: "100%",
+    marginBottom: 15,
+  },
+  button: {
+    width: "100%",
+    marginTop: 10,
+    backgroundColor: "#177581",
+  },
+  signupText: {
+    marginTop: 15,
+  },
+});
 
 export default Login;
