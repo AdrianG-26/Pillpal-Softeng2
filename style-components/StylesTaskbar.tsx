@@ -10,31 +10,26 @@ export const stylesTBar = StyleSheet.create({
   },
 
   taskbarContainer: {
-    height: 75,
+    height: 100,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: '#177581',
-    shadowColor: "#000",
+    backgroundColor: 'rgb(23, 117, 129)',
+    shadowColor: "rgb(4, 2, 50)",
     shadowOffset: { width: 0, height: -4 },
     shadowOpacity: 0.3,
-    shadowRadius: 4,
-    elevation: 5, 
-  },
-
-  iconContainer: {
-    marginTop: 1000,
+    shadowRadius: 6,
+    elevation: 5,
   },
 
   iconActive: {
-    color: '#177581',
-    backgroundColor: '#FBFBFB', 
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgb(235, 244, 246)', 
     borderWidth: 2, 
-    borderColor: '#FBFBFB', 
-    borderRadius: 10, 
-  },
-
-  icon: {
-    padding: 5,
+    borderColor: 'rgb(251, 251, 251)', 
+    borderRadius: 15,  
+    height: 45,
+    width: 45,
   },
 });

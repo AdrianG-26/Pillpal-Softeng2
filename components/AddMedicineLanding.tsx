@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/NavigationTypes"; 
 import { useMedicine } from "../context/MedicineContext";
-import { Feather } from "@expo/vector-icons";
+import { Feather, AntDesign } from "@expo/vector-icons";
 import stylesAddMed from "../style-components/StylesAddMed";
 
 
@@ -86,8 +86,9 @@ const AddMedicineLanding = () => {
         <TouchableOpacity
           style={stylesAddMed.addButton}
           onPress={() => navigation.navigate("AddMedicineForm")}
-        >
-          <Text style={stylesAddMed.addButtonText}>+ Add Medicine</Text>
+        > 
+          <AntDesign name="pluscircleo" style={stylesAddMed.addIcon} />
+          <Text style={stylesAddMed.addButtonText}> Add Medicine</Text>
         </TouchableOpacity>
       </View>
     </View>

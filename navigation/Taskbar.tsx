@@ -1,18 +1,18 @@
 import React from "react";
+import { View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { stylesTBar } from "../style-components/StylesTaskbar"; 
+import { stylesTBar } from "../style-components/StylesTaskbar";
 import HomeScreen from "../components/HomePage";
 import AddMedicineLanding from "../components/AddMedicineLanding";
-import AddMedicineForm from "../components/AddMedicineForm"; // Import Form Screen
+import AddMedicineForm from "../components/AddMedicineForm";
 import WaterTracker from "../components/WaterTracker";
 import SymptomReport from "../components/SymptomReport";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-// Stack Navigator for the "Pill" section
 const PillStack = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>
     <Stack.Screen name="MedicineLanding" component={AddMedicineLanding} />
@@ -33,16 +33,17 @@ const Taskbar = () => {
           else if (route.name === "Water") iconName = "water";
 
           return (
-            <MaterialCommunityIcons
-              name={iconName}
-              size={size}
-              color={color}
-              style={focused ? stylesTBar.iconActive : null}
-            />
+            <View style={focused ? stylesTBar.iconActive : null}>
+              <MaterialCommunityIcons
+                name={iconName}
+                size={size + 3}
+                color={focused ? "rgb(23, 117, 129)" : color} // Change color inside active container
+              />
+            </View>
           );
         },
-        tabBarActiveTintColor: "rgb(100,2,2)",
-        tabBarInactiveTintColor: "white",
+        tabBarActiveTintColor: "rgb(23, 117, 129)",
+        tabBarInactiveTintColor: "rgb(239, 236, 236)",
         tabBarStyle: stylesTBar.taskbarContainer,
         tabBarLabel: () => null,
         headerShown: false,

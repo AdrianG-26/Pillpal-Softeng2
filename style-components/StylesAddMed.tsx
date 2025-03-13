@@ -3,13 +3,13 @@ import { StyleSheet } from "react-native";
 const stylesAddMed = StyleSheet.create({
   addMedicineContainer: {
     flex: 1,
-    backgroundColor: "rgb(245, 247, 255)", 
+    backgroundColor: "rgb(233, 240, 245)",
     alignItems: "center",
   },
 
   /* Header */
   headerContainer: {
-    backgroundColor: "#E3F2FD", 
+    backgroundColor: "rgb(244, 254, 255)", 
     height: 90,
     width: "100%",
     flexDirection: "row",
@@ -83,7 +83,7 @@ const stylesAddMed = StyleSheet.create({
   medicineAreaContainer: {
     flex: 1,
     width: "100%",
-    paddingHorizontal: 20,
+    paddingHorizontal:20,
     paddingTop: 20,
   },
 
@@ -149,16 +149,19 @@ const stylesAddMed = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     marginTop: 25,
+    flexDirection: 'row',
   },
 
   addButton: {
     backgroundColor: "rgb(23, 117, 129)", // Brighter color for call-to-action
     paddingVertical: 18,
     paddingHorizontal: 40,
-    borderRadius: 50,
+    borderRadius: 30,
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 20,
+    flexDirection: 'row',
+    gap: 5,
 
     // Shadow for elevation
     shadowColor: "#000",
@@ -171,7 +174,12 @@ const stylesAddMed = StyleSheet.create({
   addButtonText: {
     color: "white",
     fontSize: 20,
-    fontWeight: "700", // Bolder text for button
+    fontWeight: "700", 
+  },
+
+  addIcon: {
+    fontSize: 20,
+    color: "white",
   },
 });
 
