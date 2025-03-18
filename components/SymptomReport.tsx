@@ -10,7 +10,7 @@ import {
 import { stylesSR } from "../style-components/StylesSymptomReport";
 import { Feather, AntDesign } from "@expo/vector-icons";
 import { useSymptoms } from "../context/SymptomContext";
-import { allSymptoms, Symptom  } from "../data/symptomsList";
+import { allSymptoms, Symptom  } from "../data/SymptomsList";
 
 // SymptomCard Component
 const SymptomCard: React.FC<{ symptom: Symptom }> = ({ symptom }) => (

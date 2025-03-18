@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, ReactNode } from "react";
-import { Symptom } from "../data/symptomsList";
+import { Symptom } from "../data/SymptomsList";
 
 // Define context type
 interface SymptomsContextType {
