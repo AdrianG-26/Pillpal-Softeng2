@@ -6,85 +6,19 @@ const stylesAddMed = StyleSheet.create({
     backgroundColor: "rgb(233, 240, 245)",
     alignItems: "center",
   },
-
-  /* Header */
-  headerContainer: {
-    backgroundColor: "rgb(244, 254, 255)", 
-    height: 90,
-    width: "100%",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: 25,
-
-
-    // Shadow 
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 6,
-    elevation: 6,
-  },
-
-  /* User Info */
-  userContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: 'center',
-  },
-
-  userIconContainer: {
-    backgroundColor: "#177581", 
-    width: 50,
-    height: 50,
-    borderRadius: 50,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  userIcon: {
-    fontSize: 28,
-    color: "white",
-  },
-
-  textContainer: {
-    marginLeft: 14, // Slightly more space between icon and text
-  },
-
-  welcomeText: {
-    fontSize: 20,
-    fontWeight: "600", // Lighter font for a more elegant look
-    color: "#177581",
-  },
-
-  /* Menu Icon */
-  menuIconContainer: {
-    backgroundColor: "rgb(23, 117, 129)",
-    padding: 14,
-    borderRadius: 10,
-  },
-
-  burgerMenu: {
-    fontSize: 28,
-    color: "white",
-  },
-
   /* Section Titles */
   medicineTextHeader: {
     fontSize: 24,
     fontWeight: "700", // Bolder header for emphasis
-    marginVertical: 15,
     textAlign: "left",
     color: "#333",
-    marginTop: 20, // Added margin for better spacing
   },
 
   /* Medicines Container */
   medicineAreaContainer: {
     flex: 1,
     width: "100%",
-    paddingHorizontal:20,
-    paddingTop: 20,
+    paddingHorizontal: 20,
   },
 
   medicineContainer: {
@@ -99,7 +33,6 @@ const stylesAddMed = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 5,
     elevation: 4,
-    
   },
 
   lowStockBackground: {
@@ -131,15 +64,16 @@ const stylesAddMed = StyleSheet.create({
 
   /* Active Medicines */
   activeMedContainer: {
-    paddingVertical: 12,
-    paddingHorizontal: 10,
+    marginTop: 20,
     marginBottom: 25,
+    gap: 10,
   },
 
   /* Inactive Medicines */
   inactiveMedContainer: {
     backgroundColor: "transparent", // Light gray background for inactive items
     borderRadius: 12,
+    paddingHorizontal: 0,
     padding: 12,
   },
 

@@ -40,25 +40,9 @@ const AddMedicineLanding = () => {
     ) 
   };
   
-
   return (
     <View style={stylesAddMed.addMedicineContainer}>
-      {/* Header Section */}
-      <View style={stylesAddMed.headerContainer}>
-        <View style={stylesAddMed.userContainer}>
-          <View style={stylesAddMed.userIconContainer}>
-            <Feather name="user" style={stylesAddMed.userIcon} />
-          </View>
-          <View style={stylesAddMed.textContainer}>
-            <Text style={stylesAddMed.welcomeText}>Hello, User!</Text>
-          </View>
-        </View>
-
-        <TouchableOpacity style={stylesAddMed.menuIconContainer}>
-          <Feather name="menu" style={stylesAddMed.burgerMenu} />
-        </TouchableOpacity>
-      </View>
-
+      
       {/* Medicines Section */}
       <View style={stylesAddMed.medicineAreaContainer}>
         <View style={stylesAddMed.activeMedContainer}>

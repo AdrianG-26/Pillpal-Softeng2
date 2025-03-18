@@ -48,6 +48,11 @@ export const stylesHMP = StyleSheet.create({
     color: '#177581',
   },
 
+  iconNotification: {
+    fontSize: 30,
+    color: '#177581',
+  },
+
   burgerMenu: {
     fontSize: 27,
     color: 'rgb(244, 254, 255)',

@@ -6,67 +6,6 @@ export const stylesSR = StyleSheet.create({
       backgroundColor: "rgb(233, 240, 245)",
       alignItems: "center",
     },
-
-    //header
-    headerContainer: {
-      backgroundColor: "rgb(244, 254, 255)", 
-      height: 90,
-      width: "100%",
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-between",
-      paddingHorizontal: 25,
-  
-      // Shadow 
-      shadowColor: "rgb(0, 0, 0)",
-      shadowOffset: { width: 0, height: 4 },
-      shadowOpacity: 0.2,
-      shadowRadius: 6,
-      elevation: 6,
-    },
-  
-    /* User Info */
-    userContainer: {
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: 'center',
-    },
-  
-    userIconContainer: {
-      backgroundColor: "rgb(23, 117, 129)", 
-      width: 50,
-      height: 50,
-      borderRadius: 50,
-      justifyContent: "center",
-      alignItems: "center",
-    },
-  
-    userIcon: {
-      fontSize: 28,
-      color: "rgb(255, 255, 255)",
-    },
-  
-    textContainer: {
-      marginLeft: 14, 
-    },
-  
-    welcomeText: {
-      fontSize: 20,
-      fontWeight: "600", 
-      color: "rgb(23, 117, 129)",
-    },
-  
-    menuIconContainer: {
-      backgroundColor: "rgb(23, 117, 129)",
-      padding: 14,
-      borderRadius: 10,
-    },
-  
-    burgerMenu: {
-      fontSize: 28,
-      color: "rgb(255, 255, 255)",
-    },
-
     //contents
     contentsContainer: {
       flex: 1,
@@ -86,6 +25,8 @@ export const stylesSR = StyleSheet.create({
 
     symptomCard: {
       padding: 20,
+      
+      paddingHorizontal: 100,
       borderRadius: 20,
       marginVertical: 10,
     },

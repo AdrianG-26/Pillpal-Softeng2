@@ -5,6 +5,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { NavigationContainer } from '@react-navigation/native';
 import { CalendarProvider } from './context/CalendarContext';
 import { MedicineProvider } from "./context/MedicineContext";
+import { SymptomsProvider } from "./context/SymptomContext";
 import { styleMain } from "./style-components/GlobalStyles";
 import Taskbar from "./navigation/Taskbar";
 
@@ -13,8 +14,9 @@ export default function App() {
     <SafeAreaProvider>
       <SafeAreaView style={styleMain.SafeAreaContainer} edges={["top", "left", "right"]}>
         <CalendarProvider>
-          <MedicineProvider>
-            <NavigationContainer>
+        <MedicineProvider>
+        <SymptomsProvider>
+          <NavigationContainer>
               <StatusBar
                 barStyle="dark-content"
                 backgroundColor="rgb(68, 171, 181)"
@@ -22,7 +24,8 @@ export default function App() {
               />
               <Taskbar />
             </NavigationContainer>
-          </MedicineProvider>
+        </SymptomsProvider>
+        </MedicineProvider>
         </CalendarProvider>
       </SafeAreaView>
     </SafeAreaProvider>

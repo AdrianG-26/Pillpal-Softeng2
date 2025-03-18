@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Feather, MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { stylesHMP } from '../style-components/StylesHomePage';
 import { useCalendar } from '../context/CalendarContext';
 
@@ -13,20 +13,7 @@ const HomeScreen = () => {
   return (
     <View style={stylesHMP.mainContainer}>
       {/* TOP SECTION */}
-      <View style={stylesHMP.topSection}>
-        <View style={stylesHMP.userContainer}>
-          <Feather name="user" style={stylesHMP.userIcon} />
-          <View style={stylesHMP.textContainer}>
-            <Text style={stylesHMP.welcomeText}>Hi User!</Text>
-            <Text style={stylesHMP.welcomeText}>How do you feel today?</Text>
-          </View>
-        </View>
-        <View style={stylesHMP.iconContainer}>
-          <Feather name="phone" style={stylesHMP.iconContact} />
-          <Feather name="menu" style={stylesHMP.burgerMenu} />
-        </View>
-      </View>
-
+  
       {/* CALENDAR SECTION */}
       <View style={stylesHMP.calendarSection}>
         <View style={stylesHMP.calendarArea}>

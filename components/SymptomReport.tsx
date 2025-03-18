@@ -9,24 +9,10 @@ import {
 } from "react-native";
 import { stylesSR } from "../style-components/StylesSymptomReport";
 import { Feather, AntDesign } from "@expo/vector-icons";
+import { useSymptoms } from "../context/SymptomContext";
+import { allSymptoms, Symptom  } from "../data/symptomsList";
 
-// Define Symptom Type
-interface Symptom {
-  id: string;
-  name: string;
-  treatment: string;
-  color: string;
-}
-
-// Full list of symptoms with treatments
-const allSymptoms: Symptom[] = [
-  { id: "1", name: "Fever", treatment: "Take Paracetamol", color: "rgb(231, 76, 60)" },
-  { id: "2", name: "Wet cough", treatment: "Drink warm fluids", color: "rgb(14, 92, 100)" },
-  { id: "3", name: "Dry cough", treatment: "Use cough syrup", color: "rgb(142, 68, 173)" },
-  { id: "4", name: "Sore throat", treatment: "Gargle with salt water", color: "rgb(243, 156, 18)" },
-  { id: "5", name: "Runny nose", treatment: "Take antihistamines", color: "rgb(52, 152, 219)" },
-];
-
+// SymptomCard Component
 const SymptomCard: React.FC<{ symptom: Symptom }> = ({ symptom }) => (
   <View style={[stylesSR.symptomCard, { backgroundColor: symptom.color }]}>
     <Text style={stylesSR.symptomName}>{symptom.name}</Text>
@@ -35,37 +21,12 @@ const SymptomCard: React.FC<{ symptom: Symptom }> = ({ symptom }) => (
 );
 
 const SymptomReport: React.FC = () => {
+  const { selectedSymptoms, toggleSymptom } = useSymptoms();
   const [modalVisible, setModalVisible] = useState(false);
-  const [selectedSymptoms, setSelectedSymptoms] = useState<Symptom[]>([]);
-
-  // Toggle symptom selection
-  const toggleSymptom = (symptom: Symptom) => {
-    setSelectedSymptoms((prev) =>
-      prev.some((s) => s.id === symptom.id)
-        ? prev.filter((s) => s.id !== symptom.id) // Remove if already selected
-        : [...prev, symptom] // Add if not selected
-    );
-  };
 
   return (
     <View style={stylesSR.container}>
       {/* Header */}
-      <View style={stylesSR.headerContainer}>
-        <View style={stylesSR.userContainer}>
-          <View style={stylesSR.userIconContainer}>
-            <Feather name="user" style={stylesSR.userIcon} />
-          </View>
-          <View style={stylesSR.textContainer}>
-            <Text style={stylesSR.welcomeText}>Hello, User!</Text>
-          </View>
-        </View>
-
-        <TouchableOpacity style={stylesSR.menuIconContainer}>
-          <Feather name="menu" style={stylesSR.burgerMenu} />
-        </TouchableOpacity>
-      </View>
-
-      {/* Content */}
       <View style={stylesSR.contentsContainer}>
         <Text style={stylesSR.containerTitle}>Latest Symptom Report</Text>
 
