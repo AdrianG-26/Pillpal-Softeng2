@@ -2,7 +2,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
-import HomeScreen from "../components/HomePage";
+import HomeScreen from "./HomePage";
 import { stylesTBar } from "../style-components/StylesTaskbar";
 import AddMedicine from "./AddMedicine";
 import SymptomReport from "./SymptomReport";
