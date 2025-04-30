@@ -1,12 +1,8 @@
 import { StyleSheet } from 'react-native';
 
 export const stylesTBar = StyleSheet.create({
-  
-  mainContainer: {
-    flex: 1,
-  },
 
-  contentContainer: {
+  mainContainer: {
     flex: 1,
   },
 
@@ -71,9 +67,8 @@ export const stylesTBar = StyleSheet.create({
 
   taskbarContainer: {
     height: 100,
+    paddingTop: 15,
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
     backgroundColor: 'rgb(23, 117, 129)',
     shadowColor: "rgb(4, 2, 50)",
     shadowOffset: { width: 0, height: -4 },

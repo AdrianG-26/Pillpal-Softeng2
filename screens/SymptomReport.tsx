@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { stylesSR } from "../style-components/StylesSymptomReport";
+import { stylesSR } from "../styles/StylesSymptomReport";
 import { Feather, AntDesign } from "@expo/vector-icons";
 import { useSymptoms } from "../context/SymptomContext";
 import { allSymptoms, Symptom  } from "../data/SymptomsList";

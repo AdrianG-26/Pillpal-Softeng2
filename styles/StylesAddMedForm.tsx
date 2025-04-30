@@ -71,6 +71,37 @@ const stylesAddMedForm = StyleSheet.create({
         marginRight: 10,
     },
 
+    dosageUnitPicker: {
+        height: 50,
+        borderWidth: 1,
+        borderColor: '#CCC',
+        borderRadius: 10,
+        backgroundColor: '#FFF',
+    },
+
+    dosageUnitButton: {
+        width: 100,
+        height: 50,
+        borderWidth: 1,
+        borderColor: '#CCC',
+        borderRadius: 10,
+        backgroundColor: '#FFF',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: 15,
+    },
+
+    dosageUnitText: {
+        fontSize: 16,
+        color: '#333',
+    },
+
+    modeText: {
+        fontSize: 16,
+        color: '#333',
+    },
+
     picker: {
         flex: 1,
         height: 50,

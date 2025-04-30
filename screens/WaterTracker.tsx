@@ -1,29 +1,88 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Modal, TextInput, StyleSheet, Alert } from 'react-native';
-import stylesWaterTracker from '../style-components/StylesWaterTracker';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import stylesWaterTracker from '../styles/StylesWaterTracker';
 import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
+import { db } from '../services/FirebaseService';
+import { doc, getDoc, setDoc } from '@react-native-firebase/firestore';
+
+interface WaterTrackerData {
+  intakeVolume: number;
+  measurement: string;
+  totalGoal: number;
+  currentIntake: number;
+  lastResetDate: string;
+}
 
 const WaterTracker = () => {
-  const [currentIntake, setCurrentIntake] = useState(1500);
+  const [currentIntake, setCurrentIntake] = useState(0);
   const [totalGoal, setTotalGoal] = useState(2500);
   const [goalModalVisible, setGoalModalVisible] = useState(false);
   const [newGoal, setNewGoal] = useState(totalGoal.toString());
   const [isVolumeModalVisible, setVolumeModalVisible] = useState(false);
   const [intakeVolume, setIntakeVolume] = useState(250);
   const [measurement, setMeasurement] = useState('ml');
+  const [lastResetDate, setLastResetDate] = useState(new Date().toDateString());
 
+  // Load saved data on mount
   useEffect(() => {
-    const loadSettings = async () => {
-      const savedVolume = await AsyncStorage.getItem('intakeVolume');
-      const savedMeasurement = await AsyncStorage.getItem('measurement');
-      const savedGoal = await AsyncStorage.getItem('totalGoal');
-      if (savedVolume) setIntakeVolume(parseInt(savedVolume));
-      if (savedMeasurement) setMeasurement(savedMeasurement);
-      if (savedGoal) setTotalGoal(parseInt(savedGoal));
+    const loadData = async () => {
+      try {
+        const waterDoc = await getDoc(doc(db, 'waterTracker', 'data'));
+        const defaultData: WaterTrackerData = {
+          intakeVolume: 250,
+          measurement: 'ml',
+          totalGoal: 2500,
+          currentIntake: 0,
+          lastResetDate: new Date().toDateString()
+        };
+
+        if (waterDoc && waterDoc.exists) {
+          const data = waterDoc.data() as WaterTrackerData;
+          setIntakeVolume(data.intakeVolume);
+          setMeasurement(data.measurement);
+          setTotalGoal(data.totalGoal);
+          setCurrentIntake(data.currentIntake);
+          setLastResetDate(data.lastResetDate);
+
+          // Reset intake if it's a new day
+          const today = new Date().toDateString();
+          if (data.lastResetDate !== today) {
+            setCurrentIntake(0);
+            setLastResetDate(today);
+            await setDoc(doc(db, 'waterTracker', 'data'), {
+              ...data,
+              currentIntake: 0,
+              lastResetDate: today
+            });
+          }
+        } else {
+          // Initialize with default values
+          await setDoc(doc(db, 'waterTracker', 'data'), defaultData);
+        }
+      } catch (error) {
+        console.error('Error loading water tracker data:', error);
+      }
     };
-    loadSettings();
+    loadData();
   }, []);
+
+  // Save data when it changes
+  useEffect(() => {
+    const saveData = async () => {
+      try {
+        await setDoc(doc(db, 'waterTracker', 'data'), {
+          currentIntake,
+          totalGoal,
+          intakeVolume,
+          measurement,
+          lastResetDate
+        });
+      } catch (error) {
+        console.error('Error saving water tracker data:', error);
+      }
+    };
+    saveData();
+  }, [currentIntake, totalGoal, intakeVolume, measurement, lastResetDate]);
 
   const addWaterIntake = () => {
     if (currentIntake + intakeVolume <= totalGoal) {
@@ -32,10 +91,19 @@ const WaterTracker = () => {
   };
 
   const saveVolumeAndMeasurement = async () => {
-    await AsyncStorage.setItem('intakeVolume', intakeVolume.toString());
-    await AsyncStorage.setItem('measurement', measurement);
-    Alert.alert('Saved!', 'Your volume and measurement have been updated.');
-    setVolumeModalVisible(false);
+    try {
+      await setDoc(doc(db, 'waterTracker', 'data'), {
+        intakeVolume,
+        measurement,
+        currentIntake,
+        totalGoal,
+        lastResetDate
+      });
+      Alert.alert('Saved!', 'Your volume and measurement have been updated.');
+      setVolumeModalVisible(false);
+    } catch (error) {
+      console.error('Error saving volume and measurement:', error);
+    }
   };
 
   const handleVolumeChange = (value: string) => {

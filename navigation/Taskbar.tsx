@@ -4,12 +4,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useNavigationState } from "@react-navigation/native";
 import { MaterialCommunityIcons, Feather, Ionicons } from "@expo/vector-icons";
-import { stylesTBar } from "../style-components/StylesTaskbar";
-import HomeScreen from "../components/HomePage";
-import AddMedicineLanding from "../components/AddMedicineLanding";
-import AddMedicineForm from "../components/AddMedicineForm";
-import WaterTracker from "../components/WaterTracker";
-import SymptomReport from "../components/SymptomReport";
+import { stylesTBar } from "../styles/StylesTaskbar";
+import HomeScreen from "../screens/HomePage";
+import AddMedicineLanding from "../screens/AddMedicineLanding";
+import AddMedicineForm from "../screens/AddMedicineForm";
+import WaterTracker from "../screens/WaterTracker";
+import SymptomReport from "../screens/SymptomReport";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -54,11 +54,9 @@ const Taskbar = () => {
   });
 
   return (
-    <View style={{ flex: 1 }}>
-      {/* Hide Top Navigation Bar when on AddMedicineForm */}
+    <View style={stylesTBar.mainContainer}>
       {currentRouteName !== "AddMedicineForm" && <TopNavigationBar />}
 
-      {/* Bottom Tab Navigator */}
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ color, size, focused }) => {

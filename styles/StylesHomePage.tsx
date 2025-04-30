@@ -191,13 +191,11 @@ export const stylesHMP = StyleSheet.create({
   },  
 
   selectedDateContainer: {
-    position: 'absolute',
-    top: 10,
-    left: 28,
-    padding: 5,
     borderRadius: 5,
     zIndex: 1,
-    width: '87%',
+    width: '100%',
+    paddingTop: 10,
+    paddingHorizontal: 20,
   },
   
   selectedDateText: {
@@ -216,10 +214,12 @@ export const stylesHMP = StyleSheet.create({
   //MEDICINE SECTION
 
   medicineIntakeContainer: {
-    position: 'absolute',
-    top: 45,
-    borderRadius: 8,
-    width: '85%',
+    width: '100%',
+    padding: 20,
+  },
+
+  medicineScrollView: {
+    width: '100%',
   },
 
   medicineText: {
